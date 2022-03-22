@@ -113,10 +113,29 @@ public class Services {
 	}
 	
 	
-//	Custom Query 1
+//	Find sneakers for which their size is between startSize and endSize and isn't sold
 	
-//	Custom Query 2
+	public List<SneakerEntry> findBySizeBetween(float startSize, float endSize){
+		
+		return repo.findBySizeBetweenAndIsSoldFalse(startSize, endSize);
+		
+	}
 	
+//	Find sneakers with listed price less than argument
+	
+	public List<SneakerEntry> findByListedPriceLessThanEqual(float price){
+		
+		return repo.findByListedPriceLessThanEqualAndIsSoldFalse(price);
+		
+	}
+	
+//	Find all sneakers that haven't been sold
+	
+	public List<SneakerEntry> findByIsSoldFalse(){
+		
+		return repo.findByIsSoldFalse();
+		
+	}
 	
 	
 	
