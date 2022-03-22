@@ -10,9 +10,10 @@ public interface Repo extends JpaRepository<SneakerEntry, Long>{
 
 	public List<SneakerEntry> findBySizeBetweenAndIsSoldFalse(float startSize, float endSize);
 	
-	public List<SneakerEntry> findByPriceLessThanEqualAndIsSoldFalse(float price);
+	public List<SneakerEntry> findByListedPriceLessThanEqualAndIsSoldFalse(float price);
 	
 	public List<SneakerEntry> findByIsSoldFalse();
+
 	
 	
 }

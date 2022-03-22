@@ -42,7 +42,7 @@ public class Services {
 	
 //	Update an entry by it's ID
 	
-	public boolean updateByIndex(long id, SneakerEntry entry) {
+	public boolean updateById(long id, SneakerEntry entry) {
 		
 		SneakerEntry originalEntry = getById(id);
 		
@@ -59,7 +59,7 @@ public class Services {
 	
 //	Delete an entry by it's ID
 	
-	public boolean deleteByIndex(long id) {
+	public boolean deleteById(long id) {
 		
 		repo.deleteById(id);
 		
@@ -115,7 +115,26 @@ public class Services {
 	
 //	Custom Query 1
 	
+	public List<SneakerEntry> findBySizeBetweenAndIsSoldFalse(float startSize, float endSize){
+		
+		return repo.findBySizeBetweenAndIsSoldFalse(startSize, endSize);
+		
+	}
+	
 //	Custom Query 2
+	
+	public List<SneakerEntry> findByListedPriceLessThanEqual(float price){
+		
+		return repo.findByListedPriceLessThanEqualAndIsSoldFalse(price);
+		
+	}
+	
+	public List<SneakerEntry> findByIsSoldFalse(){
+		
+		return repo.findByIsSoldFalse();
+		
+	}
+	
 	
 	
 	
