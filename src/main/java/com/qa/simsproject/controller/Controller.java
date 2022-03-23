@@ -55,7 +55,7 @@ public class Controller {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> updateByIndex(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
+	public ResponseEntity<String> updateById(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
 		
 		service.updateById(id, entry);
 		
@@ -82,6 +82,28 @@ public class Controller {
 		service.deleteAll();
 		
 		ResponseEntity<String> response = new ResponseEntity<>("All entries have been deleted", HttpStatus.ACCEPTED);
+		
+		return response;
+		
+	}
+	
+	@PutMapping("/markSold/{id}")
+	public ResponseEntity<String> markAsSold(@PathVariable("id") long id){
+		
+		service.markAsSoldById(id);
+		
+		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been marked as sold", HttpStatus.ACCEPTED);
+		
+		return response;
+		
+	}
+	
+	@GetMapping("/profit/{id}")
+	public ResponseEntity<Float> profitById(@PathVariable("id") long id){
+		
+		float profit = service.profitById(id);
+		
+		ResponseEntity<Float> response = new ResponseEntity<>(profit, HttpStatus.ACCEPTED);
 		
 		return response;
 		
