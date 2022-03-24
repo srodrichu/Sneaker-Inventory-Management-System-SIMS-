@@ -74,10 +74,15 @@ public class ServicesTest {
 //	@Test
 //	public void testUpdateById() {
 //		
-//		
+//		//GIVEN	
+	
 //		Mockito.when(repo.save(sneaker1)).thenReturn(sneaker1Id);
+	
+		//WHEN
 //		
 //		Mockito.when(repo.findById(2l).get()).thenReturn(sneaker2Id);
+	
+		//THEN
 //		
 //		boolean result = services.updateById(2l, sneaker1);
 //		
