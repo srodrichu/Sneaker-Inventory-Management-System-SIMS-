@@ -26,11 +26,10 @@ public class Controller {
 	}
 	
 	@PostMapping("/createEntry")
-	public ResponseEntity<String> createBooking(@RequestBody SneakerEntry entry){
+	public ResponseEntity<SneakerEntry> createBooking(@RequestBody SneakerEntry entry){
 		
-		service.createEntry(entry);
 		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry Added: " + entry.getId(), HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.createEntry(entry), HttpStatus.ACCEPTED);
 		
 		return response;
 		
@@ -55,22 +54,19 @@ public class Controller {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> updateById(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
+	public ResponseEntity<SneakerEntry> updateById(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
 		
-		service.updateById(id, entry);
 		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been updated.", HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.updateById(id, entry), HttpStatus.ACCEPTED);
 		
 		return response;
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteById(@PathVariable("id") long id){
+	public ResponseEntity<SneakerEntry> deleteById(@PathVariable("id") long id){
 		
-		service.deleteById(id);
-		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been deleted.", HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.deleteById(id), HttpStatus.ACCEPTED);
 		
 		return response;
 		
@@ -88,11 +84,10 @@ public class Controller {
 	}
 	
 	@PutMapping("/markSold/{id}")
-	public ResponseEntity<String> markAsSold(@PathVariable("id") long id){
+	public ResponseEntity<SneakerEntry> markAsSold(@PathVariable("id") long id){
+
 		
-		service.markAsSoldById(id);
-		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been marked as sold", HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.markAsSoldById(id), HttpStatus.ACCEPTED);
 		
 		return response;
 		

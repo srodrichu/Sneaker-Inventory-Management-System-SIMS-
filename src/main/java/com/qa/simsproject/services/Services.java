@@ -22,7 +22,6 @@ public class Services {
 		
 		return repo.save(entry);
 		
-		
 	}
 	
 //	Get all the sneaker entries in the database
