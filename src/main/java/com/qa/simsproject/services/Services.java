@@ -19,9 +19,8 @@ public class Services {
 	}
 	
 	public SneakerEntry createEntry(SneakerEntry entry) {
-		
-		return repo.save(entry);
-		
+
+				return repo.save(entry);
 		
 	}
 	
