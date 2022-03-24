@@ -1,5 +1,8 @@
 package com.qa.simsproject.testing.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -44,5 +47,42 @@ public class ServicesTest {
 		
 	}
 	
+	@Test
+	public void testGetAll() {
+		
+		List<SneakerEntry> testList = List.of(sneaker1Id, sneaker2Id);
+		
+		Mockito.when(repo.findAll()).thenReturn(testList);
+		
+		List<SneakerEntry> result = services.getAllSneakers();
+		
+		Assertions.assertEquals(testList, result);
+		
+	}
 	
+	@Test
+	public void testGetById() {
+		
+		Mockito.when(repo.findById(1l)).thenReturn(Optional.of(sneaker1Id));
+		
+		SneakerEntry result = services.getById(1l);
+		
+		Assertions.assertEquals(sneaker1Id, result);
+		
+	}
+	
+//	@Test
+//	public void testUpdateById() {
+//		
+//		
+//		Mockito.when(repo.save(sneaker1)).thenReturn(sneaker1Id);
+//		
+//		Mockito.when(repo.findById(2l).get()).thenReturn(sneaker2Id);
+//		
+//		boolean result = services.updateById(2l, sneaker1);
+//		
+//	}
+//	
+//	@Test
+//	public void 
 }
