@@ -1,5 +1,7 @@
 # Sneaker-Inventory-Management-System-SIMS-
 
+# The final build file is in the dev branch.
+
 ## Why are we doing this?
 
 Having experience buying and selling limited edition Sneakers one of the most important aspects is keeping track of your stock. This CRUD application aims to address the pain points of inventory management in sneaker reselling.
@@ -19,3 +21,7 @@ A frontend experience would be a good addition along with some extra functionali
 ## Jira board:
 
 [https://sneakerinventorymanagement.atlassian.net/jira/software/projects/SNEAK/boards/1/backlog](https://sneakerinventorymanagement.atlassian.net/jira/software/projects/SNEAK/boards/1/backlog)
+
+## Relevant Screenshots
+
+https://drive.google.com/drive/folders/1JQV1bobDswmIapRGU6PSEXqBVP5lgjKa?usp=sharing
