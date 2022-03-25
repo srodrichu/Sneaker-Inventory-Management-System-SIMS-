@@ -56,7 +56,6 @@ public class Controller {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<SneakerEntry> updateById(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
 		
-		
 		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.updateById(id, entry), HttpStatus.ACCEPTED);
 		
 		return response;
