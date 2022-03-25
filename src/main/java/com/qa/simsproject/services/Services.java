@@ -1,6 +1,7 @@
 package com.qa.simsproject.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,9 @@ public class Services {
 		this.repo = repo; 
 	}
 	
-	public boolean createEntry(SneakerEntry entry) {
-		
-		repo.save(entry);
-		return true;
+	public SneakerEntry createEntry(SneakerEntry entry) {
+
+				return repo.save(entry);
 		
 	}
 	
@@ -36,15 +36,19 @@ public class Services {
 	
 	public SneakerEntry getById(long id) {
 		
-		return repo.findById(id).get();
+		Optional<SneakerEntry> opt = repo.findById(id);
+		
+		return opt.orElse(null);
 		
 	}
 	
 //	Update an entry by it's ID
 	
-	public boolean updateById(long id, SneakerEntry entry) {
+	public SneakerEntry updateById(long id, SneakerEntry entry) {
 		
-		SneakerEntry originalEntry = getById(id);
+		Optional<SneakerEntry> opt = repo.findById(id);
+		
+		SneakerEntry originalEntry = opt.get();
 		
 		originalEntry.setName(entry.getName());
 		originalEntry.setSize(entry.getSize());
@@ -52,32 +56,34 @@ public class Services {
 		originalEntry.setListedPrice(entry.getListedPrice());
 		originalEntry.setSold(entry.isSold());
 		
-		repo.save(originalEntry);
+		return repo.save(originalEntry);
 		
-		return true;
 	}
 	
 //	Delete an entry by it's ID
 	
-	public boolean deleteById(long id) {
+	public SneakerEntry deleteById(long id) {
+		
+		Optional<SneakerEntry> deleteEntry = repo.findById(id);
 		
 		repo.deleteById(id);
 		
-		return true;
+		return deleteEntry.orElse(null);
 		
 	}
 	
 //	Mark an entry as sold - change isSold from false to true
 	
-	public boolean markAsSoldById(long id) {
+	public SneakerEntry markAsSoldById(long id) {
 		
-		SneakerEntry soldSneaker = getById(id);
+		Optional<SneakerEntry> opt = repo.findById(id);
+		
+		SneakerEntry soldSneaker = opt.get();
 		
 		soldSneaker.setSold(true);
 		
-		repo.save(soldSneaker);
+		return repo.save(soldSneaker);
 		
-		return true;
 		
 	}
 	
@@ -95,7 +101,9 @@ public class Services {
 	
 	public float profitById(long id){
 		
-		SneakerEntry sneaker = repo.findById(id).get();
+		Optional<SneakerEntry> opt = repo.findById(id);
+		
+		SneakerEntry sneaker = opt.get();
 		
 		if (sneaker.isSold() == true) {
 			

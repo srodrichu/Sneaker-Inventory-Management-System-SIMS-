@@ -26,11 +26,10 @@ public class Controller {
 	}
 	
 	@PostMapping("/createEntry")
-	public ResponseEntity<String> createBooking(@RequestBody SneakerEntry entry){
+	public ResponseEntity<SneakerEntry> createBooking(@RequestBody SneakerEntry entry){
 		
-		service.createEntry(entry);
 		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry Added: " + entry.getId(), HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.createEntry(entry), HttpStatus.ACCEPTED);
 		
 		return response;
 		
@@ -55,22 +54,18 @@ public class Controller {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> updateByIndex(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
+	public ResponseEntity<SneakerEntry> updateById(@PathVariable("id") long id, @RequestBody SneakerEntry entry){
 		
-		service.updateById(id, entry);
-		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been updated.", HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.updateById(id, entry), HttpStatus.ACCEPTED);
 		
 		return response;
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteById(@PathVariable("id") long id){
+	public ResponseEntity<SneakerEntry> deleteById(@PathVariable("id") long id){
 		
-		service.deleteById(id);
-		
-		ResponseEntity<String> response = new ResponseEntity<>("Entry: " + id + " has been deleted.", HttpStatus.ACCEPTED);
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.deleteById(id), HttpStatus.ACCEPTED);
 		
 		return response;
 		
@@ -82,6 +77,27 @@ public class Controller {
 		service.deleteAll();
 		
 		ResponseEntity<String> response = new ResponseEntity<>("All entries have been deleted", HttpStatus.ACCEPTED);
+		
+		return response;
+		
+	}
+	
+	@PutMapping("/markSold/{id}")
+	public ResponseEntity<SneakerEntry> markAsSold(@PathVariable("id") long id){
+
+		
+		ResponseEntity<SneakerEntry> response = new ResponseEntity<>(service.markAsSoldById(id), HttpStatus.ACCEPTED);
+		
+		return response;
+		
+	}
+	
+	@GetMapping("/profit/{id}")
+	public ResponseEntity<Float> profitById(@PathVariable("id") long id){
+		
+		float profit = service.profitById(id);
+		
+		ResponseEntity<Float> response = new ResponseEntity<>(profit, HttpStatus.ACCEPTED);
 		
 		return response;
 		
