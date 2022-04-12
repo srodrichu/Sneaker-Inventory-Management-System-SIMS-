@@ -1,7 +1,5 @@
 # Sneaker-Inventory-Management-System-SIMS-
 
-# The final build file is in the dev branch.
-
 ## Why are we doing this?
 
 Having experience buying and selling limited edition Sneakers one of the most important aspects is keeping track of your stock. This CRUD application aims to address the pain points of inventory management in sneaker reselling.
